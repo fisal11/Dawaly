@@ -1,0 +1,71 @@
+﻿@model Dawaly.Models.ApplyToPlace
+
+@{
+    ViewBag.Title = "DetailsPlaceByUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default" style="background-color: black;
+      height:60px;padding-left: 15px; padding-right: 15px;">
+      <h3 class="panel-heading"> Details Place </h3>
+</div>
+
+<div class="panel panel-default" style="background-color:black;
+ padding-left:15px;padding-right:15px;padding-bottom:10px;
+ padding-top:10px">
+    <dl class="dl-horizontal h4 panel-heading" style="text-align-last:left;">
+        <dt style="height: 40px;">
+           Type
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Place.Category.CategortName)
+        </dd>
+        <dt style="height: 40px;">
+            Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Place.Name)
+        </dd>
+        <dt style="height: 40px;">
+            Details
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Place.Details)
+        </dd>
+        <dt style="height: 40px;">
+            Location
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Place.Location)
+        </dd>
+        <dt style="height: 40px;">
+            Price
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Place.Price)
+        </dd>
+        <dt style="height: 50px;">
+            Image
+        </dt>
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model=>model.Place.Image)"
+                 class="thumbnail" style="width:100px ; height:100px;" />
+        </dd>
+        <dt style="height: 40px;">
+           Message
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+        <dt style="height: 40px;">
+           Date
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditApply", new { id = Model.Id}, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Back","GetPlacesbyUser")
+</p>

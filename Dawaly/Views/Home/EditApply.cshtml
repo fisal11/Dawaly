@@ -1,0 +1,63 @@
+﻿@model Dawaly.Models.ApplyToPlace
+
+@{
+    ViewBag.Title = "Edit Your Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default" style="background-color: black;
+      height:60px; padding-left: 15px; padding-right: 15px;">
+    <h3 class="panel-heading">Edit</h3>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()   
+<div class="form-horizontal panel panel-default"
+ style="background-color:black;padding-left:15px;
+ padding-right:15px;padding-bottom:10px;padding-top:10px">
+    <div class="h5 panel-heading" style="text-align-last:left">
+
+   
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.PlaceId)
+    @Html.HiddenFor(model => model.UserId)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Place.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.Place.Name
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.User.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.User.UserName
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApplyDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.ApplyDate
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+     </div>
+}
+<div class="btn btn-primary">
+    <a href="~/Home/GetPlacesbyUser" style="color:white">
+        Back
+    </a>
+</div>

@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default" style="background-color: black;
+      height:60px; padding-left: 15px; padding-right: 15px;">
+    <h3 class="panel-heading">Booking</h3>
+</div>
+
+<div class="panel panel-default h5" style="background-color:black;
+ padding-left:15px;padding-right:15px;padding-bottom:10px;
+ padding-top:10px">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <div class="form-horizontal panel panel-heading">
+        <h4>Book this place</h4>
+        <hr />
+        <div>
+            @{
+                if (ViewBag.Result != null)
+                {
+                    <h3 class="panel panel-heading ">@ViewBag.Result</h3>
+                }
+            }
+        </div>
+        <div style="text-align-last:left">
+            @Html.ValidationMessage("Enter Your Message")
+            <div class="form-group">
+                @Html.Label("Message", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextArea("Message", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("Message", "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Back to Home", "Index")
+</div>

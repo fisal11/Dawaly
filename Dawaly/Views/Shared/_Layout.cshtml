@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top"
+         style="background-color:black; height:70px">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse h4">
+                <ul class="nav navbar-nav navbar-right ">
+                    <li>
+                        <a href="~/Home/Index" style="color:white">
+                            <i class="glyphicon glyphicon-home">
+                                Home
+                            </i>
+                        </a>
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            <input type="text" name="searchName"
+                            placeholder="Search.."
+                            style="background-image:url('../images/searchicon.png');
+                            background-repeat: no-repeat;
+                            text-align-last: left;
+                            color: black; border: 2px solid #ccc;
+                            border-radius: 5px;
+                            background-position:right;
+                            padding:5px; margin-top:10px;" />
+                        }
+                    </li>
+                    <li>
+                        <a href="~/Home/About" style="color:white">
+                            <i class="glyphicon glyphicon-info-sign">
+                                About
+                            </i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="~/Home/Contact" style="color:white">
+                            <i class="glyphicon glyphicon-phone">
+                                Contact
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <ul class=" nav navbar-nav navbar-left">
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div class="container">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

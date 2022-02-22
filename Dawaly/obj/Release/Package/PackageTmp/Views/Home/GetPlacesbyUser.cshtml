@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Dawaly.Models.ApplyToPlace>
+
+@{
+    ViewBag.Title = "GetPlacesbyUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default" style="background-color: black;
+      height:60px;padding-left: 15px; padding-right: 15px;">
+    <h3 class="panel-heading"> All Places Your Booked </h3>
+</div>
+
+<div class="panel panel-default" style="background-color:black;
+ padding-left:15px;padding-right:15px;padding-bottom:10px;padding-top:10px">
+
+    <table class="table h5 panel-heading">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Date
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplyDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditApply", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "DetailsPlaceByUser", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Deleteapply", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>
+<div class="btn btn-primary">
+    <a href="~/Home/Index" style="color:white">
+        Back
+    </a>
+</div>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Dawaly.Models.Category>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="panel panel-default" style="background-color:black;
+     padding-top:20px;padding-left: 15px;padding-right: 15px;">
+    <div class="col-1 panel panel-heading ">
+        <h3>Welcome to Dawarly...</h3>
+        <p class="lead">you can search for the place you want :</p>
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-default" style="background-color:black;
+         padding-left:15px;padding-right:15px;">
+        <h3 class="panel-heading">@Html.DisplayFor(modelItem => item.CategortName):</h3>
+        <div class="row text-center">
+            @foreach (var anatheritem in item.home)
+            {
+            <div class="col-lg-3">
+                <div class="thumbnail" style="margin-bottom:30px">
+                    <img src="~/Uploads/@anatheritem.Image"
+                         style="height:250px;width:270px;margin-bottom:2px">
+                    <p class="glyphicon glyphicon-map-marker">
+
+                        @Html.DisplayFor(modelItem => anatheritem.Location)
+                    </p>
+                    <p class="glyphicon glyphicon-home">
+                        @Html.DisplayFor(modelItem => anatheritem.Name)
+                    </p>
+                    <div>
+                        @Html.ActionLink("Details", "Details", new { PlaceId = anatheritem.Id },
+                                           new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+}

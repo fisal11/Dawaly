@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Dawaly.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="panel panel-default" style="background-color:black;
+     padding-top:10px;padding-left: 15px;padding-right: 15px;
+     ">
+    <div class="col-1 panel panel-heading ">
+        <h3>Categories</h3>
+        <h4>@Html.ActionLink("Create New Categori", "Create", new { @class = "btn btn-primary" })</h4>
+    </div>
+</div>
+<div class="panel panel-default" style="background-color:black;
+ padding-left:15px;padding-right:15px;padding-bottom:10px;padding-top:10px">
+
+    <table class="table h5 panel-heading">
+        <tr>
+            <th>
+                Type
+            </th>
+            <th>
+               Description
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategortName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategortDescription)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

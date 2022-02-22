@@ -1,0 +1,34 @@
+﻿namespace Dawaly.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class Place : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.Places",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Details = c.String(nullable: false),
+                        Location = c.String(nullable: false),
+                        Image = c.String(nullable: false),
+                        CategoryId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.CategoryId);
+            
+        }
+        
+        public override void Down()
+        {
+            DropForeignKey("dbo.Places", "CategoryId", "dbo.Categories");
+            DropIndex("dbo.Places", new[] { "CategoryId" });
+            DropTable("dbo.Places");
+        }
+    }
+}
